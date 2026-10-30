@@ -12,7 +12,7 @@ Dispatch a code reviewer subagent to catch issues before they cascade. The revie
 ## When to Request Review
 
 **Mandatory:**
-- After each task in subagent-driven development
+- After each task in docs/PLAN.md
 - After completing major feature
 - Before merge to main
 
@@ -23,15 +23,18 @@ Dispatch a code reviewer subagent to catch issues before they cascade. The revie
 
 ## How to Request
 
-**1. Get git SHAs:**
+**1. Get the change to review:**
 ```bash
 BASE_SHA=$(git rev-parse HEAD~1)  # or: git merge-base origin/main HEAD
 HEAD_SHA=$(git rev-parse HEAD)
 ```
+If the change is not committed yet (review before commit), set `{BASE_SHA}` to `HEAD` and `{HEAD_SHA}` to `WORKING TREE`; the reviewer reads `git status` and `git diff HEAD` instead of a commit range.
 
 **2. Dispatch code reviewer subagent:**
 
-Dispatch a `general-purpose` subagent, filling the template at [code-reviewer.md](code-reviewer.md)
+Dispatch a reviewer subagent, filling the template at [code-reviewer.md](code-reviewer.md). If subagents are unavailable, ask the user to run the review in a separate session with the filled template. The reviewer only reads; it never modifies code.
+
+Save the reviewer's full output to `docs/reviews/YYYY-MM-DD-<task-name>.md`.
 
 **Placeholders:**
 - `{DESCRIPTION}` - Brief summary of what you built
@@ -57,7 +60,7 @@ HEAD_SHA=$(git rev-parse HEAD)
 
 [Dispatch code reviewer subagent]
   DESCRIPTION: Added verifyIndex() and repairIndex() with 4 issue types
-  PLAN_OR_REQUIREMENTS: Task 2 from docs/superpowers/plans/deployment-plan.md
+  PLAN_OR_REQUIREMENTS: Task 2 from docs/PLAN.md
   BASE_SHA: a7981ec
   HEAD_SHA: 3df7661
 

@@ -37,6 +37,9 @@ README에 따라 파일 복사가 끝난 뒤, 작업 폴더에서 이 문서를 
 ## 4. Playwright CLI 설치
 
 - 설치 후 동작 확인
+- Chrome 없이 Chromium만 있는 환경에서는 기본 설정(Chrome 채널)으로 브라우저가 열리지 않으므로, 작업 폴더에 `.playwright/cli.config.json`을 만들어 Chromium을 지정
+  - 예: `{"browser":{"browserName":"chromium","launchOptions":{"executablePath":"<Chromium 실행 파일 경로>"}}}`
+- `file://` 주소는 열리지 않으므로 화면 확인은 서버를 띄운 뒤 http 주소로 진행
 - 실패하면 대안으로 Playwright MCP 설정 JSON을 제시 (사용자가 MCP 탭에 붙여넣고 저장)
 - MCP는 Codex 재시작 후 적용되므로, 재시작은 완료 후 한 번에 진행
 

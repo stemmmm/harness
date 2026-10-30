@@ -5,7 +5,7 @@ Use this template when dispatching a code reviewer subagent.
 **Purpose:** Review completed work against requirements and code quality standards before it cascades into more work.
 
 ```
-Subagent (general-purpose):
+Subagent:
   description: "Review code changes"
   prompt: |
     You are a Senior Code Reviewer with expertise in software architecture,
@@ -29,6 +29,15 @@ Subagent (general-purpose):
     git diff --stat [BASE_SHA]..[HEAD_SHA]
     git diff [BASE_SHA]..[HEAD_SHA]
     ```
+
+    If Head is WORKING TREE, review the uncommitted changes instead:
+
+    ```bash
+    git status
+    git diff HEAD
+    ```
+
+    Do not modify any files. Report findings only.
 
     ## The spec is a vision document
 
